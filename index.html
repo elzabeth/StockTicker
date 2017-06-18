@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>StockTicker - Hackathon</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	 <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <!-- Theme CSS -->
+    <link href="agency.min.css" rel="stylesheet">
+
+	<style>
+	#imaginary_container{
+    margin-top:20%;
+    }
+	</style>
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Stock Ticker</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#SearchStocks">Search Stocks</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#team">Team</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in">Welcome To Real Time Stock Ticker!</div>
+                <div class="intro-heading">Your Personal Stock Analyser</div>
+                
+            </div>
+        </div>
+    </header>
+
+    <!-- Portfolio Grid Section -->
+    <section id="SearchStocks" class="bg-light-gray">
+        <div class="container">
+            <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+		  <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div id="imaginary_container"> 
+                <div class="input-group stylish-input-group">
+                    <input type="text" id="searchbox" class="form-control"  placeholder="Search" list="somethingelse" >
+					<datalist id="somethingelse">
+					<i><b><option value="honeywell"></option></b></i>
+					<option value="intel"></option>
+					<option value="hp"></option>
+					<option value="amazon"></option>
+					<option value="wipro"></option>
+					<option value="eBay"></option>
+					</datalist>
+                    <span class="input-group-addon">
+                        <button type="submit" onclick="searchTest()">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>  
+                    </span>
+                </div>
+            </div>
+        </div>
+	</div>
+        </div>
+		
+		<br>
+		<br>
+			
+  <div class="container-main">
+	 <div class="row1">
+  <div class="col-md-3">
+    <div class="thumbnail">
+	 <p id="graph1"></p>
+      <div class="caption">
+        <h3 id="dynamic">Honeywell</h3>
+        <ul class="list-group">
+		<li class="list-group-item justify-content-between">
+		Currency
+		<span class="badge badge-default badge-pill" id="hon1">1</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		Opening Stock
+		<span class="badge badge-default badge-pill" id="hon2">2</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		52Week Range
+		<span class="badge badge-default badge-pill" id="hon3">2</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		Previous Close
+		<span class="badge badge-default badge-pill" id="hon4">1</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		PE Ratio
+		<span class="badge badge-default badge-pill" id="hon5">1</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		MarketCapital
+		<span class="badge badge-default badge-pill" id="hon6">1</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		PercentChange
+		<span class="badge badge-default badge-pill" id="hon7">1</span>
+		</li>
+		</ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="thumbnail">
+	 <p id="graph2"></p>
+      <div class="caption">
+        <h3>Google</h3>
+        <ul class="list-group">
+		<li class="list-group-item justify-content-between">
+		Currency
+		<span class="badge badge-default badge-pill" id="goog1">2</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		Opening Stock
+		<span class="badge badge-default badge-pill" id="goog2">2</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		52Week Range
+		<span class="badge badge-default badge-pill" id="goog3">2</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		Previous Close
+		<span class="badge badge-default badge-pill" id="goog4">1</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		PE Ratio
+		<span class="badge badge-default badge-pill" id="goog5">1</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		MarketCapital
+		<span class="badge badge-default badge-pill" id="goog6">1</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		PercentChange
+		<span class="badge badge-default badge-pill" id="goog7">1</span>
+		</li>
+		</ul>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+  
+   <div class="row2">
+  <div class="col-md-3">
+    <div class="thumbnail">
+	 <p id="graph3"></p>
+      <div class="caption">
+        <h3>Apple</h3>
+        <ul class="list-group">
+		<li class="list-group-item justify-content-between">
+		Currency
+		<span class="badge badge-default badge-pill" id="app1"></span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		Opening Stock
+		<span class="badge badge-default badge-pill" id="app2">2</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		52Week Range
+		<span class="badge badge-default badge-pill" id="app3">2</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		Previous Close
+		<span class="badge badge-default badge-pill" id="app4">1</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		PE Ratio
+		<span class="badge badge-default badge-pill" id="app5">1</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		MarketCapital
+		<span class="badge badge-default badge-pill" id="app6">1</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		PercentChange
+		<span class="badge badge-default badge-pill" id="app7">1</span>
+		</li>
+		</ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-3">
+    <div class="thumbnail">
+	 <p id="graph4"></p>
+      <div class="caption">
+        <h3>Microsoft</h3>
+        <ul class="list-group">
+		<li class="list-group-item justify-content-between">
+		Currency
+		<span class="badge badge-default badge-pill" id="ms1"></span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		Opening Stock
+		<span class="badge badge-default badge-pill" id="ms2">2</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		52Week Range
+		<span class="badge badge-default badge-pill" id="ms3">2</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		Previous Close
+		<span class="badge badge-default badge-pill" id="ms4">1</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		PE Ratio
+		<span class="badge badge-default badge-pill" id="ms5">1</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		MarketCapital
+		<span class="badge badge-default badge-pill" id="ms6">1</span>
+		</li>
+		<li class="list-group-item justify-content-between">
+		PercentChange
+		<span class="badge badge-default badge-pill" id="ms7">1</span>
+		</li>
+		</ul>
+      </div>
+    </div>
+	</div>
+	</div>
+    
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Our Amazing Team</h2>
+                    <h3 class="section-subheading text-muted">A team is many hands and one mind</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="5.jpg" class="img-responsive img-circle" alt="">
+                        <h4>Vineeth</h4>
+                        <p class="text-muted">MIT,Manipal</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="4.jpg" class="img-responsive img-circle" alt="">
+                        <h4>Elizabeth R</h4>
+                        <p class="text-muted">TCE,Madurai</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="1.jpg" class="img-responsive img-circle" alt="">
+                        <h4>Mahima</h4>
+                        <p class="text-muted">MIT,Manipal</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Honeywell 2017</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script> 
+	<script> 
+	var config = { 
+    apiKey: "AIzaSyAVd3-9ZtdlB6FzYkxCZMIekUBRrjPGqY0",
+    authDomain: "stockticker-fa878.firebaseapp.com",
+    databaseURL: "https://stockticker-fa878.firebaseio.com",
+    projectId: "stockticker-fa878",
+    storageBucket: "",
+    messagingSenderId: "666482690490"
+	};
+	firebase.initializeApp(config);
+	
+	function searchTest()
+	{
+	var data1=document.getElementById("searchbox").value;
+	document.getElementById('dynamic').innerText=data1;
+	//var hon1 = document.getElementById('hon1');
+	var dbref = firebase.database().ref().child(data1).child('results').child('quote').child('Currency');
+	dbref.on('value',snap => hon1.innerText = snap.val());
+	//var hon2 = document.getElementById('hon2');
+	var dbref = firebase.database().ref().child(data1).child('results').child('quote').child('Open');
+	dbref.on('value',snap => hon2.innerText = snap.val());
+	var dbref = firebase.database().ref().child(data1).child('results').child('quote').child('YearRange');
+	dbref.on('value',snap => hon3.innerText = snap.val());
+	//var hon4 = document.getElementById('hon4');
+	var dbref = firebase.database().ref().child(data1).child('results').child('quote').child('PreviousClose');
+	dbref.on('value',snap => hon4.innerText = snap.val());
+	//var hon5 = document.getElementById('hon5');
+	var dbref = firebase.database().ref().child(data1).child('results').child('quote').child('PERatio');
+	dbref.on('value',snap => hon5.innerText = snap.val());
+	//var hon6 = document.getElementById('hon6');
+	var dbref = firebase.database().ref().child(data1).child('results').child('quote').child('MarketCapitalization');
+	dbref.on('value',snap => hon6.innerText = snap.val());
+	//var hon7 = document.getElementById('hon7');
+	var dbref = firebase.database().ref().child(data1).child('results').child('quote').child('PercentChange');
+	dbref.on('value',snap => hon7.innerText = snap.val());
+	}
+	
+	
+	//var hon1 = document.getElementById('hon1');
+	var dbref = firebase.database().ref().child('honeywell').child('results').child('quote').child('Currency');
+	dbref.on('value',snap => hon1.innerText = snap.val());
+	//var hon2 = document.getElementById('hon2');
+	var dbref = firebase.database().ref().child('honeywell').child('results').child('quote').child('Open');
+	dbref.on('value',snap => hon2.innerText = snap.val());
+	//var hon3 = document.getElementById('hon3');
+	var dbref = firebase.database().ref().child('honeywell').child('results').child('quote').child('YearRange');
+	dbref.on('value',snap => hon3.innerText = snap.val());
+	//var hon4 = document.getElementById('hon4');
+	var dbref = firebase.database().ref().child('honeywell').child('results').child('quote').child('PreviousClose');
+	dbref.on('value',snap => hon4.innerText = snap.val());
+	//var hon5 = document.getElementById('hon5');
+	var dbref = firebase.database().ref().child('honeywell').child('results').child('quote').child('PERatio');
+	dbref.on('value',snap => hon5.innerText = snap.val());
+	//var hon6 = document.getElementById('hon6');
+	var dbref = firebase.database().ref().child('honeywell').child('results').child('quote').child('MarketCapitalization');
+	dbref.on('value',snap => hon6.innerText = snap.val());
+	//var hon7 = document.getElementById('hon7');
+	var dbref = firebase.database().ref().child('honeywell').child('results').child('quote').child('PercentChange');
+	dbref.on('value',snap => hon7.innerText = snap.val());
+	
+	//var goog1 = document.getElementById('goog1');
+	var dbref = firebase.database().ref().child('google').child('results').child('quote').child('Currency');
+	dbref.on('value',snap => goog1.innerText = snap.val());
+	//var goog2 = document.getElementById('goog2');
+	var dbref = firebase.database().ref().child('google').child('results').child('quote').child('LastTradePriceOnly');
+	dbref.on('value',snap => goog2.innerText = snap.val());
+	//var goog3 = document.getElementById('goog3');
+	var dbref = firebase.database().ref().child('google').child('results').child('quote').child('PercentChange');
+	dbref.on('value',snap => goog3.innerText = snap.val());
+	//var goog4 = document.getElementById('goog4');
+	var dbref = firebase.database().ref().child('google').child('results').child('quote').child('YearHigh');
+	dbref.on('value',snap => goog4.innerText = snap.val());
+	//var goog5 = document.getElementById('goog5');
+	var dbref = firebase.database().ref().child('google').child('results').child('quote').child('YearLow');
+	dbref.on('value',snap => goog5.innerText = snap.val()); 
+	//var goog6 = document.getElementById('goog6');
+	var dbref = firebase.database().ref().child('google').child('results').child('quote').child('YearHigh');
+	dbref.on('value',snap => goog6.innerText = snap.val());
+	//var goog7 = document.getElementById('goog7');
+	var dbref = firebase.database().ref().child('google').child('results').child('quote').child('YearLow');
+	dbref.on('value',snap => goog7.innerText = snap.val()); 
+	
+	//var app1 = document.getElementById('app1');
+	var dbref = firebase.database().ref().child('apple').child('results').child('quote').child('Currency');
+	dbref.on('value',snap => app1.innerText = snap.val());
+	//var app2 = document.getElementById('app2');
+	var dbref = firebase.database().ref().child('apple').child('results').child('quote').child('LastTradePriceOnly');
+	dbref.on('value',snap => app2.innerText = snap.val());
+	//var app3 = document.getElementById('app3');
+	var dbref = firebase.database().ref().child('apple').child('results').child('quote').child('PercentChange');
+	dbref.on('value',snap => app3.innerText = snap.val());
+	//var app4 = document.getElementById('app4');
+	var dbref = firebase.database().ref().child('apple').child('results').child('quote').child('YearHigh');
+	dbref.on('value',snap => app4.innerText = snap.val());
+	//var app5 = document.getElementById('app5');
+	var dbref = firebase.database().ref().child('apple').child('results').child('quote').child('YearLow');
+	dbref.on('value',snap => app5.innerText = snap.val());
+	//var app6 = document.getElementById('app6');
+	var dbref = firebase.database().ref().child('apple').child('results').child('quote').child('YearLow');
+	dbref.on('value',snap => app6.innerText = snap.val());
+	//var app7 = document.getElementById('app7');
+	var dbref = firebase.database().ref().child('apple').child('results').child('quote').child('YearLow');
+	dbref.on('value',snap => app7.innerText = snap.val());
+	
+	//var ms1 = document.getElementById('ms1');
+	var dbref = firebase.database().ref().child('microsoft').child('results').child('quote').child('Currency');
+	dbref.on('value',snap => ms1.innerText = snap.val());
+	//var ms2 = document.getElementById('ms2');
+	var dbref = firebase.database().ref().child('microsoft').child('results').child('quote').child('LastTradePriceOnly');
+	dbref.on('value',snap => ms2.innerText = snap.val());
+	//var ms3 = document.getElementById('ms3');
+	var dbref = firebase.database().ref().child('microsoft').child('results').child('quote').child('PercentChange');
+	dbref.on('value',snap => ms3.innerText = snap.val());
+	//var ms4 = document.getElementById('ms4');
+	var dbref = firebase.database().ref().child('microsoft').child('results').child('quote').child('YearHigh');
+	dbref.on('value',snap => ms4.innerText = snap.val());
+	//var ms5 = document.getElementById('ms5');
+	var dbref = firebase.database().ref().child('microsoft').child('results').child('quote').child('YearLow');
+	dbref.on('value',snap => ms5.innerText = snap.val());
+	//var ms6 = document.getElementById('ms6');
+	var dbref = firebase.database().ref().child('microsoft').child('results').child('quote').child('YearHigh');
+	dbref.on('value',snap => ms6.innerText = snap.val());
+	//var ms7 = document.getElementById('ms7');
+	var dbref = firebase.database().ref().child('microsoft').child('results').child('quote').child('YearLow');
+	dbref.on('value',snap => ms7.innerText = snap.val());
+	</script>
+	
+    <!-- jQuery -->
+    <script src="jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb" crossorigin="anonymous"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/agency.min.js"></script>
+	
+	<script type=text/javascript>
+        $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=aapl-v.json&callback=?', function (data) {
+
+    // create the chart
+    Highcharts.stockChart('graph1', {
+        chart: {
+            alignTicks: false
+        },
+
+        rangeSelector: {
+            selected: 1
+        },
+
+        title: {
+            text: 'Stock Volume'
+        },
+
+        series: [{
+            type: 'column',
+            name: 'HON Stock Volume',
+            data: data,
+            dataGrouping: {
+                units: [[
+                    'week', // unit name
+                    [1] // allowed multiples
+                ], [
+                    'month',
+                    [1, 2, 3, 4, 6]
+                ]]
+            }
+        }]
+    });
+
+
+    Highcharts.stockChart('graph2', {
+        chart: {
+            alignTicks: false
+        },
+
+        rangeSelector: {
+            selected: 1
+        },
+
+        title: {
+            text: 'GOOGLE Stock Volume'
+        },
+
+        series: [{
+            type: 'column',
+            name: 'GOOG Stock Volume',
+            data: data,
+            dataGrouping: {
+                units: [[
+                    'week', // unit name
+                    [1] // allowed multiples
+                ], [
+                    'month',
+                    [1, 2, 3, 4, 6]
+                ]]
+            }
+        }]
+    });
+
+
+    Highcharts.stockChart('graph3', {
+        chart: {
+            alignTicks: false
+        },
+
+        rangeSelector: {
+            selected: 1
+        },
+
+        title: {
+            text: 'APPLE Stock Volume'
+        },
+
+        series: [{
+            type: 'column',
+            name: 'FB Stock Volume',
+            data: data,
+            dataGrouping: {
+                units: [[
+                    'week', // unit name
+                    [1] // allowed multiples
+                ], [
+                    'month',
+                    [1, 2, 3, 4, 6]
+                ]]
+            }
+        }]
+    });
+
+
+    Highcharts.stockChart('graph4', {
+        chart: {
+            alignTicks: false
+        },
+
+        rangeSelector: {
+            selected: 1
+        },
+
+        title: {
+            text: ' MICROSOFT Stock Volume'
+        },
+
+        series: [{
+            type: 'column',
+            name: 'HPQ Stock Volume',
+            data: data,
+            dataGrouping: {
+                units: [[
+                    'week', // unit name
+                    [1] // allowed multiples
+                ], [
+                    'month',
+                    [1, 2, 3, 4, 6]
+                ]]
+            }
+        }]
+    });
+});
+
+    </script>
+	
+	<script type="text/javascript">
+	$(document).ready( function() {
+     $('app1').bind( "contentchange", function(){
+          alert("Changed");
+    })
+	});
+	</script>
+
+
+</body>
+
+</html>
